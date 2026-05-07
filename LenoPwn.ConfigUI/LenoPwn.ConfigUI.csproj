@@ -35,7 +35,7 @@
 	</ItemGroup>
 
 	<Target Name="PublishForInstaller" AfterTargets="Build">
-		<Exec Command="dotnet publish -c $(Configuration) -r $(RuntimeIdentifier) --no-build --output &quot;$(TargetDir)publish\&quot;" />
+	  <Exec Command="dotnet publish &quot;$(MSBuildProjectFullPath)&quot; -c $(Configuration) -p:Platform=&quot;$(Platform)&quot; -r $(RuntimeIdentifier) --no-build --output &quot;$(TargetDir)publish\&quot;" />
 	</Target>
 
 </Project>
