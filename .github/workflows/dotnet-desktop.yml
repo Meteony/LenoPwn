@@ -1,4 +1,3 @@
-# .github/workflows/build-x64.yml
 name: Build Windows x64
 
 on:
@@ -22,12 +21,15 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
-      - name: Restore
-        run: dotnet restore LenoPwn.sln
+      - name: Restore x64 installer
+        run: >
+          dotnet restore LenoPwn.Installer/LenoPwn.Installer.wixproj
+          -p:Platform=x64
+          -p:RuntimeIdentifier=win-x64
 
       - name: Build x64 installer
         run: >
-          dotnet build LenoPwn.sln
+          dotnet build LenoPwn.Installer/LenoPwn.Installer.wixproj
           --configuration Release
           -p:Platform=x64
           -p:RuntimeIdentifier=win-x64
